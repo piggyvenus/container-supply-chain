@@ -3,12 +3,10 @@ MAINTAINER fatherlinux <scott.mccarty@gmail.com>
 
 ENV COREBUILD_VERSION 7.2
 
-RUN yum install -y --setopt=tsflags=nodocs --disablerepo="*" --enablerepo="rhel-7-server-rpms" yum-utils deltarpm && \
-    yum-config-manager --disable "*" && \
-    yum-config-manager --enable rhel-7-server-rpms && \
+RUN yum install -y --setopt=tsflags=nodocs --disablerepo="*" --enablerepo="rhel-7-server-rpms" yum-utils --setopt=tsflags=nodocs deltarpm && \
+    yum-config-manager --disable "*" --enable rhel-7-server-rpms && \
     yum update -y --setopt=tsflags=nodocs && \
-    yum install -y iputils net-tools nmap-ncat nmap && \
-    yum install -y tar && \
+    yum install -y --setopt=tsflags=nodocs iputils net-tools nmap-ncat nmap tar && \
     yum clean all
 
 # Avoid updating software supplied by base image unless necessary (I disagree completely with this advice)
