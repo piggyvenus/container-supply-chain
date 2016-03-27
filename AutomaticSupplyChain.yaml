@@ -1,0 +1,132 @@
+apiVersion: v1
+kind: ImageStream
+metadata:
+  creationTimestamp: null
+  labels:
+    app: corebuild
+  name: corebuild
+spec: {}
+status:
+  dockerImageRepository: ""
+---
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: corebuild
+  name: corebuild
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: corebuild:latest
+  resources: {}
+  source:
+    contextDir: corebuild
+    git:
+      uri: https://github.com/fatherlinux/container-supply-chain.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/library/rhel7:latest
+    type: Docker
+  triggers:
+  - github:
+      secret: Jxx_nqGTx19G0fHE9o4U
+    type: GitHub
+  - generic:
+      secret: FCvPlf890_pHVDC-YAuM
+    type: Generic
+  - type: ConfigChange
+---
+apiVersion: v1
+kind: ImageStream
+metadata:
+  creationTimestamp: null
+  labels:
+    app: httpd-php
+  name: httpd-php
+spec: {}
+status:
+  dockerImageRepository: ""
+---
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: httpd-php
+  name: httpd-php
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: httpd-php:latest
+  resources: {}
+  source:
+    contextDir: httpd-php
+    git:
+      uri: https://github.com/fatherlinux/container-supply-chain.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: corebuild:latest
+    type: Docker
+  triggers:
+  - github:
+      secret: Jxx_nqGTx19G0fHE9o4U
+    type: GitHub
+  - generic:
+      secret: FCvPlf890_pHVDC-YAuM
+    type: Generic
+  - type: ConfigChange
+  - type: imageChange
+    imageChange: {}
+---
+apiVersion: v1
+kind: ImageStream
+metadata:
+  creationTimestamp: null
+  labels:
+    app: wordpress
+  name: wordpress
+spec: {}
+status:
+  dockerImageRepository: ""
+---
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: wordpress
+  name: wordpress
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: wordpress:latest
+  resources: {}
+  source:
+    contextDir: wordpress
+    git:
+      uri: https://github.com/fatherlinux/container-supply-chain.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: httpd-php:latest
+    type: Docker
+  triggers:
+  - github:
+      secret: Jxx_nqGTx19G0fHE9o4U
+    type: GitHub
+  - generic:
+      secret: FCvPlf890_pHVDC-YAuM
+    type: Generic
+  - type: ConfigChange
+  - type: imageChange
+    imageChange: {}
