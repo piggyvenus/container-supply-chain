@@ -12,7 +12,7 @@ RUN yum install -y --setopt=tsflags=nodocs --disablerepo="*" --enablerepo="rhel-
     yum clean all
 
 # Avoid updating software supplied by base image unless necessary (I disagree completely with this advice)
-# https://github.com/projectatomic/containeor-best-practices/blob/master/creating/creating_index.adoc#updating-software-supplied-by-base-image
+# https://github.com/projectatomic/container-best-practices/blob/master/creating/creating_index.adoc#updating-software-supplied-by-base-image
 # I (goern) in part disagree with it and added an example where you MUST do a software update 
 
 COPY ./motd /etc/motd
