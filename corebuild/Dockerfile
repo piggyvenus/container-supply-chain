@@ -3,7 +3,7 @@ MAINTAINER fatherlinux <scott.mccarty@gmail.com>
 
 ENV COREBUILD_VERSION 7.2
 
-RUN yum install -y --setopt=tsflags=nodocs --disablerepo="*" --enablerepo="rhel-7-server-rpms" yum-utils deltarpm && \
+RUN yum install -y --setopt=tsflags=nodocs --disablerepo="*" --enablerepo="rhel-7-server-rpms" yum-utils && \
     yum-config-manager $(for i in `subscription-manager repos --list-enabled | grep "Repo ID" | awk '{print $3}'`; do echo "--disable $i"; done) \
                                --enable rhel-7-server-rpms \
                                --enable rhel-7-server-extras-rpms
