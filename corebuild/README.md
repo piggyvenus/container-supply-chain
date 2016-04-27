@@ -1,5 +1,8 @@
-Software Collection httpd24 Dockerfile
-======================================
+Corebuild based on RHEL 7.2
+===========================
+
+This is a RHEL 7.2 based corebuild, crunchtools will use this image as a base
+for all its other layers.
 
 Build
 -----
@@ -7,13 +10,13 @@ Build
 Building this Dockerfile requires a Red Hat Enterprise Linux 7 host
 system with Software Collections entitlements available.
 ```
-docker build -t rhel7-crunchtools .
+docker build --rm --tag corebuild .
 ```
 
 Run
 ---
 ```
-docker run -t -i rhel7-crunchtools /bin/bash
+docker run --tty --interactive corebuild /bin/bash
 ```
 
 Test
