@@ -13,6 +13,7 @@ RUN yum install -y --setopt=tsflags=nodocs --disablerepo="*" --enablerepo="rhel-
                        --disable "rhel-ha-for-rhel-7-server-htb-rpms" \
                        --disable "rhel-7-server-rt-rpms" \
                        --disable "rhel-rs-for-rhel-7-server-htb-rpms" \
+                       --disable "rhel-7-server-nfv-rpms" \
                        --disable "rhel-7-server-rt-beta-rpms" && \
     yum-config-manager --enable rhel-7-server-rpms && \
     yum update -y --setopt=tsflags=nodocs && \
