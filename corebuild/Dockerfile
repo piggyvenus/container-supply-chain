@@ -3,7 +3,6 @@ MAINTAINER fatherlinux <scott.mccarty@gmail.com>
 
 ENV COREBUILD_VERSION 7.2
 
-<<<<<<< HEAD
 RUN yum install -y --setopt=tsflags=nodocs --disablerepo="*" --enablerepo="rhel-7-server-rpms" yum-utils deltarpm && \
     yum-config-manager --enable "rhel-7-server-rpms" \
                        --disable "rhel-lb-for-rhel-7-server-htb-rpms" \
