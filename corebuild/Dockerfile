@@ -3,10 +3,11 @@ MAINTAINER fatherlinux <scott.mccarty@gmail.com>
 
 ENV COREBUILD_VERSION 7.2
 
-RUN subscription-manager repos $(for i in `subscription-manager repos --list-enabled | grep "Repo ID" | awk '{print $3}'`; do echo "--disable=$i"; done) \
-                               --enable=rhel-7-server-rpms \
-                               --enable=rhel-7-server-extras-rpms
-RUN yum install -y --setopt=tsflags=nodocs yum-utils deltarpm iputils net-tools nmap-ncat nmap tar && \
+RUN yum install -y --setopt=tsflags=nodocs --disablerepo="*" --enablerepo="rhel-7-server-rpms" yum-utils deltarpm && \
+    yum-config-manager $(for i in `subscription-manager repos --list-enabled | grep "Repo ID" | awk '{print $3}'`; do echo "--disable $i"; done) \
+                               --enable rhel-7-server-rpms \
+                               --enable rhel-7-server-extras-rpms
+RUN yum install -y --setopt=tsflags=nodocs deltarpm iputils net-tools nmap-ncat nmap tar && \
     yum update -y --setopt=tsflags=nodocs && \
     yum clean all
 
