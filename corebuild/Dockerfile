@@ -3,21 +3,11 @@ MAINTAINER fatherlinux <scott.mccarty@gmail.com>
 
 ENV COREBUILD_VERSION 7.2
 
-RUN yum install -y --setopt=tsflags=nodocs --disablerepo="*" --enablerepo="rhel-7-server-rpms" yum-utils deltarpm && \
-    yum-config-manager --enable "rhel-7-server-rpms" \
-                       --disable "rhel-lb-for-rhel-7-server-htb-rpms" \
-                       --disable "rhel-7-server-htb-rpms" \
-                       --disable "rhel-ha-for-rhel-7-server-eus-rpms" \
-                       --disable "rhel-7-server-rt-htb-rpms" \
-                       --disable "rhel-7-server-eus-rpms" \
-                       --disable "rhel-7-server-aus-rpms" \
-                       --disable "rhel-ha-for-rhel-7-server-htb-rpms" \
-                       --disable "rhel-7-server-rt-rpms" \
-                       --disable "rhel-rs-for-rhel-7-server-htb-rpms" \
-                       --disable "rhel-7-server-nfv-rpms" \
-                       --disable "rhel-7-server-rt-beta-rpms"
-RUN yum update -y --setopt=tsflags=nodocs && \
-    yum install -y --setopt=tsflags=nodocs iputils net-tools nmap-ncat nmap tar && \
+RUN subscription-manager repos $(for i in `subscription-manager repos --list-enabled | grep "Repo ID" | awk '{print $3}'`; do echo "--disable=$i"; done) \
+                               --enable=rhel-7-server-rpms \
+                               --enable=rhel-7-server-extras-rpms
+RUN yum install -y --setopt=tsflags=nodocs yum-utils deltarpm iputils net-tools nmap-ncat nmap tar && \
+    yum update -y --setopt=tsflags=nodocs && \
     yum clean all
 
 # Avoid updating software supplied by base image unless necessary (I disagree completely with this advice)
