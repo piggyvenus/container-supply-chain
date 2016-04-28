@@ -11,7 +11,7 @@ RUN yum install -y --setopt=tsflags=nodocs --disablerepo="*" --enablerepo="rhel-
     yum clean all && \
     yum repolist
 RUN yum update -y --setopt=tsflags=nodocs && \
-    yum install -y --setopt=tsflags=nodocs deltarpm iputils net-tools nmap-ncat nmap tar && \
+    yum install -y --setopt=tsflags=nodocs deltarpm iputils net-tools nmap-ncat tcpdump tar && \
     yum clean all
 
 # Avoid updating software supplied by base image unless necessary (I disagree completely with this advice)
