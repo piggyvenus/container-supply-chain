@@ -4,10 +4,10 @@ MAINTAINER fatherlinux <scott.mccarty@gmail.com>
 ENV COREBUILD_VERSION 7.2
 
 RUN yum install -y --setopt=tsflags=nodocs --disablerepo="*" --enablerepo="rhel-7-server-rpms" yum-utils && \
-    yum-config-manager $(for i in `yum repolist enabled | awk '{print $1}' | awk 'BEGIN { FS = "/" } ; { print $1 }'`; do echo "--disable $i"; done) \
-                               --enable rhel-7-server-rpms \
-                               --enable rhel-7-server-extras-rpms \
-                               --save --setopt skip_broken=1 && \
+    yum-config-manager $(for i in `yum repolist enabled | awk '{print $1}' | awk 'BEGIN { FS = "/" } ; { print $1 }'`; do echo "--disable $i"; done) && \
+    yum-config-manager --enable rhel-7-server-rpms \
+                       --enable rhel-7-server-extras-rpms \
+                       --save --setopt skip_broken=1 && \
     yum clean all && \
     yum repolist
 RUN yum install -y --setopt=tsflags=nodocs deltarpm iputils net-tools nmap-ncat nmap tar && \
