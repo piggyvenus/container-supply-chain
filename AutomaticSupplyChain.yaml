@@ -53,6 +53,17 @@ status:
   dockerImageRepository: ""
 ---
 apiVersion: v1
+kind: ImageStream
+metadata:
+  creationTimestamp: null
+  labels:
+    app: httpd-ruby
+  name: httpd-ruby
+spec: {}
+status:
+  dockerImageRepository: ""
+---
+apiVersion: v1
 kind: BuildConfig
 metadata:
   labels:
@@ -81,6 +92,40 @@ spec:
     type: GitHub
   - generic:
       secret: FCvPlf890_pHVDC-YAuM
+    type: Generic
+  - type: ConfigChange
+  - type: imageChange
+    imageChange: {}
+---
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: httpd-ruby
+  name: httpd-ruby
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: httpd-ruby:latest
+  resources: {}
+  source:
+    contextDir: httpd-ruby
+    git:
+      uri: https://github.com/fatherlinux/container-supply-chain.git
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: corebuild:latest
+    type: Docker
+  triggers:
+  - github:
+      secret: Jxx_nqGTx19G0fHE9o57
+    type: GitHub
+  - generic:
+      secret: FCvPlf890_pHVDC-YA24
     type: Generic
   - type: ConfigChange
   - type: imageChange
