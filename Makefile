@@ -1,4 +1,3 @@
-[root@rhel7 container-supply-chain]# cat Makefile 
 COREBUILD_NAME = corebuild
 MW_COREBUILD_001 = httpd-php
 MW_COREBUILD_002 = httpd-ruby
