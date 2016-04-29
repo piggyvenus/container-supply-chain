@@ -38,6 +38,4 @@ ADD ./php.conf /opt/rh/httpd24/root/etc/httpd/conf.d/
 ADD ./info.php /var/www/html/
 ADD ./cmd.sh /
 
-ENV PHP_VERSION 5.6
-
 CMD ["/cmd.sh"]
