@@ -1,0 +1,38 @@
+{
+    "kind": "DeploymentConfig", 
+    "spec": {
+        "strategy": {
+            "type": "Rolling"
+        }, 
+        "replicas": 1, 
+        "template": {
+            "spec": {
+                "containers": [
+                    {
+                        "securityContext": {}, 
+                        "name": "corebuild", 
+                        "image": "fatherlinux/ansible-container-corebuild:20160814205549", 
+                        "args": [
+                            "/bin/false"
+                        ]
+                    }
+                ]
+            }, 
+            "metadata": {
+                "labels": {
+                    "app": "ansible-container", 
+                    "service": "corebuild"
+                }
+            }
+        }, 
+        "selector": {}
+    }, 
+    "apiVersion": "v1", 
+    "metadata": {
+        "labels": {
+            "app": "ansible-container", 
+            "service": "corebuild"
+        }, 
+        "name": "corebuild"
+    }
+}

@@ -1,0 +1,8 @@
+- name: Deploy ansible-container to  openshift
+  hosts: localhost
+  gather_facts: false
+  connection: local
+  vars:
+    playbook_debug: false
+  roles:
+  - role: ansible-container-openshift

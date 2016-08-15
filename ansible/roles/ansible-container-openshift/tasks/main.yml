@@ -1,0 +1,18 @@
+
+- oso_deployment:
+    project_name: ansible-container
+    labels:
+      app: ansible-container
+      service: corebuild
+    deployment_name: corebuild
+    containers:
+    - securityContext: {}
+      name: corebuild
+      image: fatherlinux/ansible-container-corebuild:20160814205549
+      args:
+      - /bin/false
+    replace: true
+  register: output
+
+- debug: var=output
+  when: playbook_debug

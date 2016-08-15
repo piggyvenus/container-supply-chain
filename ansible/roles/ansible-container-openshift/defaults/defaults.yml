@@ -1,0 +1,4 @@
+---
+# defaults for ansible-container-openshift
+
+playbook_debug: no

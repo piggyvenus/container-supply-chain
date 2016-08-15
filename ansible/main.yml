@@ -1,0 +1,7 @@
+- hosts: corebuild
+  tasks:
+    - name: Install vim
+      yum: name=vim-common state=latest update_cache=yes
+    - lineinfile: dest=/etc/motd line="This is a Crunchtools Lab user space for authorized use only. This Crunchtools user space and underlying computer systems may be monitored for all lawful purposes, including to ensure that their use is authorized, for management of the system, to facilitate against unauthorized access, and to verify security procedures, survivability, and operational security. Using this system constitutes consent to monitoring. All information, including personal information, placed on or sent over this system may be obtained during monitoring. Unauthorized use could result in criminal prosecution."
+    - lineinfile: dest=/etc/bashrc line="cat /etc/motd"
+    - user: name=default comment="Default Application User" uid=1001 group=root shell=/sbin/nologin home=/opt/app-root

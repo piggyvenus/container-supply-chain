@@ -1,0 +1,9 @@
+version: "1"
+services:
+  corebuild:
+    image: rhel7:latest
+    command: /bin/false
+ 
+#registries: {}
+#  url: https://docker.io
+#    namespace: fatherlinux 
