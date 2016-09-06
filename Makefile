@@ -29,6 +29,9 @@ $(APPLICATION_BUILD_NAME).o: $(APPLICATION_BUILD_NAME)/* $(MW_COREBUILD_001).o
 test:
 	env NAME=$(NAME) VERSION=$(VERSION) ./test.sh
 
+clean:
+	rm ./*.o
+
 tag_production:
 	docker tag -f $(COREBUILD_NAME):latest $(COREBUILD_NAME):production
 	docker tag -f $(MW_COREBUILD_001):latest $(MW_COREBUILD_001):production
