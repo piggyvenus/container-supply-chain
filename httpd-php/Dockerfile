@@ -30,8 +30,6 @@ RUN mkdir -p /var/www/html && \
     chown -R 1001:0 /tmp/sessions /usr/src /var/www/html
 
 EXPOSE 8080 8443
-#USER 1001
-USER ROOT
 
 ADD ./enablehttpd24.sh /etc/profile.d/
 ADD ./enablerh-php56.sh /etc/profile.d/
