@@ -11,8 +11,7 @@ RUN yum-config-manager --enable rhel-server-rhscl-7-rpms --enable rhel-7-server-
     yum install -y --setopt=tsflags=nodocs httpd24 rh-php56 rh-php56-php rh-php56-php-fpm rh-php56-php-mysqlnd && \
     yum clean all && \
     rm -rf /var/cache/yum/*
-COPY ./httpd24-libnghttp2-1.7.1-1.el7.x86_64.rpm /root/
-RUN rpm -ivh /root/httpd24-libnghttp2-1.7.1-1.el7.x86_64.rpm
+RUN LD_LIBRARY_PATH="/opt/rh/httpd24/root/usr/lib64/"
 
 COPY ./contrib/ /root/contrib
 
