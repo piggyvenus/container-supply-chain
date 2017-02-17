@@ -2,7 +2,6 @@ FROM registry.access.redhat.com/rhel7
 MAINTAINER fatherlinux <scott.mccarty@gmail.com>
 
 ENV COREBUILD_VERSION 7.2
-ENV COREBUILD_PATCH  1.0
 
 RUN yum install -y --setopt=tsflags=nodocs --disablerepo="*" --enablerepo="rhel-7-server-rpms" yum-utils && \
     yum-config-manager $(for i in `yum repolist enabled | awk '{print $1}' | awk 'BEGIN { FS = "/" } ; { print $1 }'`; do echo "--disable $i"; done) && \
