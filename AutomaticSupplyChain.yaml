@@ -24,13 +24,13 @@ spec:
   source:
     contextDir: corebuild
     git:
-      uri: https://github.com/fatherlinux/container-supply-chain.git
+      uri: https://github.com/piggyvenus/container-supply-chain.git
     type: Git
   strategy:
     dockerStrategy:
       from:
         kind: DockerImage
-        name: registry.access.redhat.com/library/rhel7:latest
+        name: registry.access.redhat.com/rhel7:latest
     type: Docker
   triggers:
   - github:
@@ -78,7 +78,7 @@ spec:
   source:
     contextDir: httpd-php
     git:
-      uri: https://github.com/fatherlinux/container-supply-chain.git
+      uri: https://github.com/piggyvenus/container-supply-chain.git
     type: Git
   strategy:
     dockerStrategy:
@@ -112,7 +112,7 @@ spec:
   source:
     contextDir: httpd-ruby
     git:
-      uri: https://github.com/fatherlinux/container-supply-chain.git
+      uri: https://github.com/piggyvenus/container-supply-chain.git
     type: Git
   strategy:
     dockerStrategy:
@@ -157,7 +157,7 @@ spec:
   source:
     contextDir: wordpress
     git:
-      uri: https://github.com/fatherlinux/container-supply-chain.git
+      uri: https://github.com/piggyvenus/container-supply-chain.git
     type: Git
   strategy:
     dockerStrategy:
