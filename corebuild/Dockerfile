@@ -1,5 +1,5 @@
 FROM registry.access.redhat.com/rhel7
-MAINTAINER shanna <shchan@redhat.com>
+MAINTAINER shanna <chan.shanna@gmail.com>
 
 ENV COREBUILD_VERSION 7.2
 
