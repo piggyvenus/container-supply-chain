@@ -1,5 +1,5 @@
 FROM registry.access.redhat.com/rhel7
-MAINTAINER fatherlinux <scott.mccarty@gmail.com>
+MAINTAINER shanna <shchan@redhat.com>
 
 ENV COREBUILD_VERSION 7.2
 
